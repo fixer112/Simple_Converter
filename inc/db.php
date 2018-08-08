@@ -1,7 +1,7 @@
 <?php
 
 class DB{
-	protected $db_name = '../db/converter.db';
+	protected $db_name = __DIR__.'/../db/converter.db';
 	protected $db_drvr ='sqlite';
 	protected $pdo;
 	public function __construct (){
@@ -23,7 +23,7 @@ class DB{
 	public function insert(string $start, string $end, float $start_unit, float $end_unit){
 		try {
 		    $this->pdo->prepare("INSERT INTO converter (Start, End, Start_unit, End_unit) VALUES (?,?,?,?)")->execute([$start, $end, $start_unit, $end_unit]);
-		    return json_encode('insert successful');
+		    echo json_encode('insert successful');
 		} catch (PDOException $e) {
 
 			echo $e->getMessage();
@@ -66,11 +66,3 @@ class DB{
 	}
 
 }
-
-
-//$db = new DB();
-//$db->insert('kg', 'g', '1', '1000');
-//$db->select('1');
-//$db->update('Start', 'ki', '1');
-//$db->delete('1');
-//$db->select_all();
