@@ -4,18 +4,18 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method != 'PUT' && $method != 'PATCH') {
 	http_response_code(405);
-	echo json_encode('method not allowed');
+	echo json_encode(['error' => 'method not allowed']);
 	return;
 	
 }
 if (!isset($_POST['name'])) {
-	echo json_encode('name is required');
+	echo json_encode(['error' => 'name is required']);
 	return;
 }elseif (!isset($_POST['value'])) {
-	echo json_encode('value is required');
+	echo json_encode(['error' => 'value is required']);
 	return;
 }elseif (!isset($_POST['id'])) {
-	echo json_encode('id is required');
+	echo json_encode(['error' => 'id is required']);
 	return;
 }
 
